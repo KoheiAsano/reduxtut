@@ -2,14 +2,14 @@ import { firebaseDB } from '../firebase'
 const Todoref = firebaseDB.ref('todos');
 
 const loadTodosSuccess = snapshot => {
-  {
+  return {
     type: 'TODOS_RECEIVE_DATA',
     data: snapshot.val()
   }
 }
 
 const loadTodosError = error => {
-  {
+  return {
     type: 'TODOS_RECEIVE_ERROR',
     message: error.message
   }
@@ -35,7 +35,7 @@ export const addTodo = text => dispatch => {
     type: 'ADD_TASK_ERROR',
     message: error.message,
   }))
-})
+}
 
 export const setVisibilityFilter = filter => ({
   type: 'SET_VISIBILITY_FILTER',

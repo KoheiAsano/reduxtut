@@ -8,7 +8,7 @@ const todos = (state = [], action) => {
           todos.push({
             key: key,
             text: todo.text,
-            completed: rodo.completed,
+            completed: todo.completed,
           })
         });
       }
