@@ -4,7 +4,7 @@ import { addTodo } from '../actions'
 
 import Button from '@material-ui/core/Button'
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = () => {
   let input
 
   return (
@@ -15,8 +15,7 @@ const AddTodo = ({ dispatch }) => {
           if(!input.value.trim()){
             return
           }
-          console.log(input.value)
-          dispatch(addTodo(input.value))
+          addTodo(input.value)
           input.value = ''
         }}
       >
