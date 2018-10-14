@@ -17,7 +17,7 @@ const loadTodosError = error => {
 
 
 export const loadTodos = () => dispatch => {
-  Todoref.ofF()
+  Todoref.off()
   Todoref.on('value',
     (snapshot) => {dispatch(loadTodosSuccess(snapshot))},
     (error) => {dispatch(loadTodosError(error))}
@@ -44,6 +44,7 @@ export const setVisibilityFilter = filter => ({
 
 export const toggleTodo = key => (dispatch,getState) => {
   let state = getState()
+  console.log(state)
   let todo = state.todos.filter(todo => todo.key ===key)
 
   firebaseDB.ref(`todos/${key}`).update({completed: !todo[0].completed})
