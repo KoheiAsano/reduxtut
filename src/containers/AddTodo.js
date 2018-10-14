@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import * as actions from '../actions'
 
 import Button from '@material-ui/core/Button'
 
-const AddTodo = () => {
+const AddTodo = ({ addTodo }) => {
   let input
 
   return (
@@ -35,4 +35,4 @@ const AddTodo = () => {
     </div>
   )
 }
-export default connect()(AddTodo)
+export default connect(null,actions)(AddTodo)
