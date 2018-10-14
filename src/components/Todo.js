@@ -16,11 +16,7 @@ const Todo = ({ onClick, completed, text }) => (
       />
     </ListItemSecondaryAction>
   </ListItem>
-  <div
-    style={{marginLeft:10, fontSize:8, color:'red'}}
-    onClick={() => deleteTodo(todo.key)}>
-    Delete
-  </div>
+
 )
 
 Todo.propTypes = {
