@@ -9,9 +9,9 @@ const TodoList = ({ todos, toggleTodo, deleteTodo }) => (
     {todos.map(todo =>
       <div>
         <Todo
-          key={todo.id}
+          key={todo.key}
           {...todo}
-          onClick={() => toggleTodo(todo.id)}
+          onClick={() => toggleTodo(todo.key)}
         />
         <div
           style={{marginLeft:10, fontSize:8, color:'red'}}

@@ -4,7 +4,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import {deleteTodo} from '../actions'
 
 const Todo = ({ onClick, completed, text }) => (
   <ListItem key={text} dense button >
