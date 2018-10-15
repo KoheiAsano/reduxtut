@@ -1,7 +1,7 @@
 export default {
-  color: {
+  backgroundColor: {
     hover: '#F44336',
-    able: '#8BC34A',
+    able: 'lightGreen',
     disable: '#FF80AB',
-  }
-}
+  },
+};
