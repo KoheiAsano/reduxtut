@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
-
+import { StyleSheet, css } from 'aphrodite';
 
 const Link = ({ active, children, onClick}) => (
-  <Button
+  <Button className={css(styles.zippyHeader)}
     onClick={onClick}
     disabled={active}
     style={{
@@ -26,3 +26,39 @@ Link.propTypes = {
 }
 
 export default Link
+
+const translateKeyframes = {
+    '0%': {
+        transform: 'translateX(0)',
+    },
+
+    '50%': {
+        transform: 'translateX(100px)',
+    },
+
+    '100%': {
+        transform: 'translateX(0)',
+    },
+};
+
+const opacityKeyframes = {
+    'from': {
+        opacity: 0,
+    },
+
+    'to': {
+        opacity: 1,
+    }
+};
+
+
+const styles = StyleSheet.create({
+  zippyHeader: {
+    ':hover': {
+        backgroundColor: 'red'
+    },
+    animationName: [translateKeyframes, opacityKeyframes],
+    animationDuration: '3s, 1200ms',
+    animationIterationCount: 'infinite',
+  },
+});

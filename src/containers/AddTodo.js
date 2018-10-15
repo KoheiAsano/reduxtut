@@ -22,21 +22,54 @@ const AddTodo = ({ addTodo }) => {
         }}
       >
         <input className={css(styles.hover)} ref={node => input = node} />
-        <button className={css(styles.hover)}
+        <Button className={css(styles.zippyHeader)}
         type="submit"
+        style={ {color: 'white',
+                backgroundColor: 'lightGreen',
+                marginLeft: '1px',}}
 
         >
           Add Todo
-        </button>
+        </Button>
       </form>
     </div>
   )
 }
 export default connect(null,actions)(AddTodo)
 
+const translateKeyframes = {
+    '0%': {
+        transform: 'translateX(0)',
+    },
+
+    '50%': {
+        transform: 'translateX(100px)',
+    },
+
+    '100%': {
+        transform: 'translateX(0)',
+    },
+};
+
+const opacityKeyframes = {
+    'from': {
+        opacity: 0,
+    },
+
+    'to': {
+        opacity: 1,
+    }
+};
+
 const styles = StyleSheet.create({
     red: {
         backgroundColor: 'red'
+    },
+
+    zippyHeader: {
+        animationName: [translateKeyframes, opacityKeyframes],
+        animationDuration: '3s, 1200ms',
+        animationIterationCount: 'infinite',
     },
 
     blue: {
