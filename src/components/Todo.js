@@ -15,6 +15,7 @@ const Todo = ({ onClick, completed, text }) => (
       />
     </ListItemSecondaryAction>
   </ListItem>
+
 )
 
 Todo.propTypes = {

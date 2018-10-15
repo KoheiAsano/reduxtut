@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import * as actions from '../actions'
 
 import Button from '@material-ui/core/Button'
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = ({ addTodo }) => {
   let input
 
   return (
@@ -15,8 +15,7 @@ const AddTodo = ({ dispatch }) => {
           if(!input.value.trim()){
             return
           }
-          console.log(input.value)
-          dispatch(addTodo(input.value))
+          addTodo(input.value)
           input.value = ''
         }}
       >
@@ -36,4 +35,4 @@ const AddTodo = ({ dispatch }) => {
     </div>
   )
 }
-export default connect()(AddTodo)
+export default connect(null,actions)(AddTodo)
