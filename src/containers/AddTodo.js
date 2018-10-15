@@ -4,7 +4,7 @@ import * as actions from '../actions'
 
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
-
+import TextField from '@material-ui/core/TextField';
 
 const AddTodo = ({ addTodo }) => {
   let input
@@ -21,13 +21,12 @@ const AddTodo = ({ addTodo }) => {
           input.value = ''
         }}
       >
-        <input className={css(styles.hover)} ref={node => input = node} />
-        <Button className={css(styles.zippyHeader)}
+        <TextField label={'TODO'}
+           value={input}
+           style={{"margin-right": "10px"}} autoFocus
+           onChange={(e) => input = e.target}/>
+        <Button className={css(styles.hover)}
         type="submit"
-        style={ {color: 'white',
-                backgroundColor: 'lightGreen',
-                marginLeft: '1px',}}
-
         >
           Add Todo
         </Button>
@@ -37,57 +36,16 @@ const AddTodo = ({ addTodo }) => {
 }
 export default connect(null,actions)(AddTodo)
 
-const translateKeyframes = {
-    '0%': {
-        transform: 'translateX(0)',
-    },
-
-    '50%': {
-        transform: 'translateX(100px)',
-    },
-
-    '100%': {
-        transform: 'translateX(0)',
-    },
-};
-
-const opacityKeyframes = {
-    'from': {
-        opacity: 0,
-    },
-
-    'to': {
-        opacity: 1,
-    }
-};
-
 const styles = StyleSheet.create({
-    red: {
-        backgroundColor: 'red'
-    },
-
-    zippyHeader: {
-        animationName: [translateKeyframes, opacityKeyframes],
-        animationDuration: '3s, 1200ms',
-        animationIterationCount: 'infinite',
-    },
-
-    blue: {
-        backgroundColor: 'blue'
-    },
-
     hover: {
         color: 'white',
         backgroundColor: 'lightGreen',
+        marginTop: '10px',
         marginLeft: '1px',
+        width:"160px",
+        height:"15px",
         ':hover': {
-            backgroundColor: 'red'
+            backgroundColor: 'green'
         }
     },
-
-    small: {
-        '@media (max-width: 600px)': {
-            backgroundColor: 'red',
-        }
-    }
 });
