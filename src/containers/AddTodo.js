@@ -14,7 +14,7 @@ const AddTodo = ({ addTodo }) => {
       <form
         onSubmit={e => {
           e.preventDefault()
-          if(!input.value.trim()){
+          if(!input || !input.value.trim() ){
             return
           }
           addTodo(input.value)
