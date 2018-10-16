@@ -57,7 +57,7 @@ ReactDOM.render(
       <App />
     </Provider>
     <Button className={css(styles.zippyHeader)}
-    onClick={() => console.log(styles.zippyHeader)}
+    onClick={() => console.log(store.getState())}
     >
     Redux Store tree
     </Button>
