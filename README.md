@@ -17,8 +17,8 @@ react-with-styles
 ## [react-with-styles](https://github.com/airbnb/react-with-styles)  
 
 ### ReactでHover, anime(style)が使える(as aphrodite interface)
-![code](./r-w-s.png)  
-![style](./r-w-s1.png)  
+![code](./ss/r-w-s.png)  
+![style](./ss/r-w-s1.png)  
 
 withStyles, cssをImportしてきて、ComponentのExportと一緒にCombine, Style適用させたいタグの中にStyleオブジェクトを引数に与えたcssを展開する形で指定。
 
@@ -44,7 +44,7 @@ import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
 import aphroditeInterface from 'react-with-styles-interface-aphrodite';
 import { css, withStyles } from 'react-with-styles';
 
-import MyTheme from './MyTheme';
+import MyTheme from './ss/MyTheme';
 
 ThemedStyleSheet.registerTheme(MyTheme);
 ThemedStyleSheet.registerInterface(aphroditeInterface);
@@ -62,21 +62,21 @@ export { css, withStyles, ThemedStyleSheet };
 ### ReducerにFirebase Reducerを追加する。
 ReduxのStoreのステート、state.firebase.data.以下にRealtime DatabaseのTreeがJavascript Object形式で追加される
 
-![reducer](./rrf-reducer.png)  
-![rrfstore](./rrf-state.png)  
+![reducer](./ss/rrf-reducer.png)  
+![rrfstore](./ss/rrf-state.png)  
 
 
 Stateに収納されたデータをComponentで使いたい時は、firebaseConnectでTreeの親Keyを指定(↓の場合todos)、mapStateToProps(↓はJSobject→list)で形を整えてComponentと一緒にExport
 
-![mapStateToProps](./mapstatetoprops.png)  
+![mapStateToProps](./ss/mapstatetoprops.png)  
 
 
 firebaseConnect、withFirebase(Methodだけ使いたい場合)でComponentをExportした場合は、そのComponentに、DB操作、Auth操作のMethodが詰まったfirebaseオブジェクトがPropsとして渡される(↓はChrome react dev tool)  
 
-![rrfstore](./connectFirebase-props.png)  
+![rrfstore](./ss/connectFirebase-props.png)  
 
 
 各コンポーネントでFirebaseAPIと同じDB操作のMethodを使ってRealtimeに引数を更新してRenderできる  
 
 
-![firebasepropsmethod](./firebasepropsmethod.png)  
+![firebasepropsmethod](./ss/firebasepropsmethod.png)  
