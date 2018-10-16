@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Todo from './Todo'
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';

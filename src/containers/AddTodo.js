@@ -1,5 +1,4 @@
 import React from 'react'
-import * as actions from '../actions'
 
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
