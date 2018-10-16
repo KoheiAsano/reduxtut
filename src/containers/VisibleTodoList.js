@@ -3,6 +3,9 @@ import * as actions from '../actions'
 import TodoList from '../components/TodoList'
 import { VisibilityFilters } from '../actions'
 
+import { compose } from 'redux'
+import { firebaseConnect } from 'react-redux-firebase'
+
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
@@ -16,9 +19,13 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = state => ({
-  todos: getVisibleTodos(state.todos, state.visibilityFilter)
-})
+const mapStateToProps = state => {
+  return(
+    {
+      todos: state.firebase.data.todos
+    }
+  )
+}
 
 // const mapDispatchToProps = dispatch => ({
 //   toggleTodo: id => dispatch(toggleTodo(id))
@@ -30,7 +37,11 @@ const mapStateToProps = state => ({
 //   mapDispatchToProps
 // )(TodoList)
 
-export default connect(
-  mapStateToProps,
-  actions
+export default compose(
+  firebaseConnect([
+    'todos'
+  ]),
+  connect((state) => ({
+    todos: state.firebase.data.todos,
+  }),actions)
 )(TodoList)
