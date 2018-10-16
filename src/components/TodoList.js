@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Todo from './Todo'
 import List from '@material-ui/core/List';
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const TodoList = ({ todos, firebase }) => {
 
@@ -18,11 +19,11 @@ const TodoList = ({ todos, firebase }) => {
               {...todo}
               onClick={() => toggleTodo(todo.key, todo.completed)}
             />
-            <div key={id + 1}
+            <IconButton key={id + 1}
               style={{marginLeft:10, fontSize:8, color:'red'}}
               onClick={() => deleteTodo(todo.key)}>
-              Delete
-            </div>
+              <DeleteIcon />
+            </IconButton>
           </div>
         )}
       </List>
