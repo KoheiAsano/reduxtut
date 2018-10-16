@@ -8,9 +8,9 @@ import App from './components/App'
 import { createStore, applyMiddleware} from "redux"
 import reduxThunk from "redux-thunk";
 
-
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
+
 
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 

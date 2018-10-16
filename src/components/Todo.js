@@ -5,17 +5,27 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const Todo = ({ onClick, completed, text}) => (
-  <ListItem key={text} dense button >
-    <ListItemText primary={text} />
-    <ListItemSecondaryAction >
-      <Checkbox
-        onChange={onClick}
-        checked={completed}
-      />
-    </ListItemSecondaryAction>
-  </ListItem>
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
+
+const Todo = ({ onClick, completed, text}) => (
+  <MuiThemeProvider theme={theme}>
+    <ListItem key={text} dense button >
+      <ListItemText primary={text} />
+      <ListItemSecondaryAction >
+        <Checkbox
+          onChange={onClick}
+          checked={completed}
+        />
+      </ListItemSecondaryAction>
+    </ListItem>
+  </MuiThemeProvider>
 )
 
 Todo.propTypes = {
