@@ -1,18 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import rootReducer from './reducers'
 import App from './components/App'
 
 
+<<<<<<< HEAD
 import { createStore, applyMiddleware} from "redux"
 import reduxThunk from "redux-thunk";
+=======
+import { createStore, applyMiddleware, compose} from "redux"
+import reduxThunk from "redux-thunk"
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+import firebase from 'firebase'
+import { reactReduxFirebase } from 'react-redux-firebase'
+>>>>>>> attach firebase
 
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
 
+<<<<<<< HEAD
 
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
+=======
+const config = {
+  userProfile: 'users',
+  enableLogging: false,
+}
+
+const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebase, config)
+)(createStore)
+
+const store = createStoreWithFirebase(rootReducer, {}, applyMiddleware(reduxThunk));
+>>>>>>> attach firebase
 
 const translateKeyframes = {
     '0%': {
