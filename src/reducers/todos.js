@@ -18,6 +18,7 @@ const todos = (state = [], action) => {
     case 'UPDATE_TASK_ERROR':
     case 'DELETE_TASK_ERROR':
       alert(action.message)
+      break;
     default:
       return state
   }

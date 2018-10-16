@@ -8,9 +8,9 @@ import App from './components/App'
 import { createStore, applyMiddleware} from "redux"
 import reduxThunk from "redux-thunk";
 
-
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
+
 
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 
@@ -57,7 +57,7 @@ ReactDOM.render(
       <App />
     </Provider>
     <Button className={css(styles.zippyHeader)}
-    onClick={() => console.log(styles.zippyHeader)}
+    onClick={() => console.log(store.getState())}
     >
     Redux Store tree
     </Button>
