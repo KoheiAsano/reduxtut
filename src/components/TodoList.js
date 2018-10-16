@@ -6,14 +6,15 @@ import List from '@material-ui/core/List';
 
 const TodoList = ({ todos, toggleTodo, deleteTodo }) => (
   <List>
+    {console.log(todos)}
     {todos.map((todo,id) =>
-      <div key={id + 1}>
+      <div >
         <Todo
           key={id + 1}
           {...todo}
           onClick={() => toggleTodo(todo.key)}
         />
-        <div key={id + 1}
+        <div
           style={{marginLeft:10, fontSize:8, color:'red'}}
           onClick={() => deleteTodo(todo.key)}>
           Delete
