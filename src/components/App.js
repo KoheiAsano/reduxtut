@@ -5,8 +5,8 @@ import VisibleTodoList from '../containers/VisibleTodoList'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const App = ({ loadTodos }) => {
-  loadTodos();
+const App = () => {
+  // loadTodos();
   return (
   <div>
     <AddTodo />

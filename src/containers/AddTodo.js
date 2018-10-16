@@ -1,12 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import * as actions from '../actions'
 
 import Button from '@material-ui/core/Button'
 import { StyleSheet, css } from 'aphrodite';
 import TextField from '@material-ui/core/TextField';
 
-const AddTodo = ({ addTodo }) => {
+import { withFirebase } from 'react-redux-firebase'
+
+const AddTodo = ({ firebase }) => {
+  const addTodo = (text) => firebase.push('todos/', {text: text, completed: false})
   let input
 
   return (
@@ -34,7 +35,7 @@ const AddTodo = ({ addTodo }) => {
     </div>
   )
 }
-export default connect(null,actions)(AddTodo)
+export default withFirebase(AddTodo)
 
 const styles = StyleSheet.create({
     hover: {
