@@ -19,14 +19,24 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = state => {
-  return(
-    {
-      todos: state.firebase.data.todos
-    }
-  )
+const mapStateToProps = (state) => {
+  if (state.firebase.data.todos){
+    let todos = []
+    Object.keys(state.firebase.data.todos).forEach(key =>{
+      let todo = state.firebase.data.todos[key];
+      todos.push({
+        key: key,
+        text: todo.text,
+        completed: todo.completed,
+      })
+    });
+    return(
+      {
+        todos: getVisibleTodos(todos, state.visibilityFilter)
+      }
+    )
+  }
 }
-
 // const mapDispatchToProps = dispatch => ({
 //   toggleTodo: id => dispatch(toggleTodo(id))
 // })
@@ -41,7 +51,5 @@ export default compose(
   firebaseConnect([
     'todos'
   ]),
-  connect((state) => ({
-    todos: state.firebase.data.todos,
-  }),actions)
+  connect(mapStateToProps,actions)
 )(TodoList)
