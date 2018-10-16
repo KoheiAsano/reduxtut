@@ -30,14 +30,6 @@ const TodoList = ({ todos, firebase }) => {
     )
   }else{return(null)}
 }
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-    }).isRequired
-  ).isRequired,
-}
+
 
 export default TodoList
