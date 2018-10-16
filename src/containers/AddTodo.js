@@ -23,7 +23,7 @@ const AddTodo = ({ addTodo }) => {
       >
         <TextField label={'TODO'}
            value={input}
-           style={{"margin-right": "10px"}} autoFocus
+           style={{marginRight: "10px"}} autoFocus
            onChange={(e) => input = e.target}/>
         <Button className={css(styles.hover)}
         type="submit"
