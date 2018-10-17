@@ -30,6 +30,7 @@ export const addTodo = text => dispatch => {
   Todoref.push({
     text: text,
     completed:false,
+    img: null,
   })
   .catch(error => dispatch({
     type: 'ADD_TASK_ERROR',
@@ -44,10 +45,20 @@ export const setVisibilityFilter = filter => ({
 
 export const toggleTodo = key => (dispatch,getState) => {
   let state = getState()
-  console.log(state)
   let todo = state.todos.filter(todo => todo.key ===key)
 
   firebaseDB.ref(`todos/${key}`).update({completed: !todo[0].completed})
+  .catch(error => dispatch({
+    type: 'UPDATE_TASK_ERROR',
+    message: error.message,
+  }));
+}
+
+export const editTodo = (key, text) => (dispatch, getState) => {
+  let state = getState()
+  let todo = state.todos.filter(todo => todo.key ===key)
+
+  firebaseDB.ref(`todos/${key}`).update({text: text})
   .catch(error => dispatch({
     type: 'UPDATE_TASK_ERROR',
     message: error.message,
@@ -58,6 +69,14 @@ export const deleteTodo = key => dispatch => {
   firebaseDB.ref(`todos/${key}`).remove()
     .catch(error => dispatch({
       type: 'DELETE_TASK_ERROR',
+      message: error.message,
+    }));
+}
+
+export const addImgtoTodo = (key,img) => dispatch => {
+  firebaseDB.ref(`todos/${key}`).update({img: img})
+    .catch(error => dispatch({
+      type: 'ADD_IMG_ERROR',
       message: error.message,
     }));
 }
