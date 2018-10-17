@@ -1,4 +1,4 @@
-import { firebaseDB } from '../firebase'
+import { firebaseDB, firebaseStorage } from '../firebase'
 const Todoref = firebaseDB.ref('todos');
 
 const loadTodosSuccess = snapshot => {
@@ -26,11 +26,12 @@ export const loadTodos = () => dispatch => {
 
 
 
-export const addTodo = text => dispatch => {
+export const addTodo = (text, img) => dispatch => {
+
   Todoref.push({
     text: text,
     completed:false,
-    img: null,
+    img: img,
   })
   .catch(error => dispatch({
     type: 'ADD_TASK_ERROR',
@@ -73,13 +74,7 @@ export const deleteTodo = key => dispatch => {
     }));
 }
 
-export const addImgtoTodo = (key,img) => dispatch => {
-  firebaseDB.ref(`todos/${key}`).update({img: img})
-    .catch(error => dispatch({
-      type: 'ADD_IMG_ERROR',
-      message: error.message,
-    }));
-}
+
 
 // export const toggleTodo = id => ({
 //   type: 'TOGGLE_TODO',

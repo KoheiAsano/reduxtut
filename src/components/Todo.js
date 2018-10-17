@@ -7,44 +7,41 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
+import Modal from '@material-ui/core/Modal';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
   },
 });
-const createObjectURL = (window.URL || window.webkitURL).createObjectURL || window.createObjectURL;
 
-const handleChangeFile = (e) => {
-    let files = e.target.files;
-    let image_url = createObjectURL(files[0]);
-    // return image_url;
-}
-
-
-        // <div>
-        //
-        //     <img src={this.state.image_src} />
-        //     <button onClick={this.clickPostBtn} type="button">投稿する</button>
-        // </div>
-const Todo = ({ onClick, completed, text, img}) => {
-  let iconSrc = '/alok.jpg'
-  return(
-    <MuiThemeProvider theme={theme}>
-      <ListItem key={text} dense button >
-        <div>
-          <img alt={'NO IMG'} src={img} style={{width: 50,height:50,}}/>
-        </div>
-        <ListItemText primary={text} />
-        <ListItemSecondaryAction >
-          <Checkbox
-            onChange={onClick}
-            checked={completed}
-          />
-        </ListItemSecondaryAction>
-      </ListItem>
-    </MuiThemeProvider>
-  )
+// const Todo = ({ onClick, completed, text, img, Edit}) => {
+class Todo extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={Edit: false}
+  }
+  render(){
+    return(
+      <MuiThemeProvider theme={theme}>
+        <ListItem key={this.props.text} dense button >
+          <div>
+            <img alt={'NO IMG'} src={this.props.img} style={{width: 50,height:50,}}/>
+          </div>
+          <ListItemText primary={this.props.text} />
+          <Button onClick={console.log(this.state.Edit)}>Test</Button>
+          <Button onClick={() => this.setState({Edit: !this.state.Edit})}>Test</Button>
+          <ListItemSecondaryAction >
+            <Checkbox
+              onChange={this.props.onClick}
+              checked={this.props.completed}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+      </MuiThemeProvider>
+    )
+  }
 }
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
