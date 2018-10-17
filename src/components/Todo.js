@@ -17,6 +17,10 @@ const theme = createMuiTheme({
 const Todo = ({ onClick, completed, text}) => (
   <MuiThemeProvider theme={theme}>
     <ListItem key={text} dense button >
+    <div>
+      <img src={'/alok.jpg'} style={{width: 50,height:50,}}/>
+      <input type="file" accept="image" name="icon" onChange={() => console.log()}/>
+    </div>
       <ListItemText primary={text} />
       <ListItemSecondaryAction >
         <Checkbox
