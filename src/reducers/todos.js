@@ -9,6 +9,7 @@ const todos = (state = [], action) => {
             key: key,
             text: todo.text,
             completed: todo.completed,
+            img: todo.img
           })
         });
       }
@@ -17,6 +18,7 @@ const todos = (state = [], action) => {
     case 'ADD_TASK_ERROR':
     case 'UPDATE_TASK_ERROR':
     case 'DELETE_TASK_ERROR':
+    case 'ADD_IMG_ERROR':
       alert(action.message)
       break;
     default:

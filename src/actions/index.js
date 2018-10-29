@@ -1,4 +1,4 @@
-import { firebaseDB } from '../firebase'
+import { firebaseDB, firebaseStorage } from '../firebase'
 const Todoref = firebaseDB.ref('todos');
 
 const loadTodosSuccess = snapshot => {
@@ -26,15 +26,23 @@ export const loadTodos = () => dispatch => {
 
 
 
-export const addTodo = text => dispatch => {
-  Todoref.push({
-    text: text,
-    completed:false,
-  })
-  .catch(error => dispatch({
-    type: 'ADD_TASK_ERROR',
-    message: error.message,
-  }))
+export const addTodo = (text, img) => dispatch => {
+  if(img){
+    let storageRef=firebaseStorage.ref().child(text);
+    storageRef.put(img).on('state_changed', () => {
+      storageRef.getDownloadURL().then((url)=>{
+        Todoref.push({
+          text: text,
+          completed:false,
+          img: url,
+        })
+        .catch(error => dispatch({
+          type: 'ADD_TASK_ERROR',
+          message: error.message,
+        }))
+      })
+    })
+  }
 }
 
 export const setVisibilityFilter = filter => ({
@@ -44,10 +52,20 @@ export const setVisibilityFilter = filter => ({
 
 export const toggleTodo = key => (dispatch,getState) => {
   let state = getState()
-  console.log(state)
   let todo = state.todos.filter(todo => todo.key ===key)
 
   firebaseDB.ref(`todos/${key}`).update({completed: !todo[0].completed})
+  .catch(error => dispatch({
+    type: 'UPDATE_TASK_ERROR',
+    message: error.message,
+  }));
+}
+
+export const editTodo = (key, text) => (dispatch, getState) => {
+  let state = getState()
+  let todo = state.todos.filter(todo => todo.key ===key)
+
+  firebaseDB.ref(`todos/${key}`).update({text: text})
   .catch(error => dispatch({
     type: 'UPDATE_TASK_ERROR',
     message: error.message,
@@ -61,6 +79,8 @@ export const deleteTodo = key => dispatch => {
       message: error.message,
     }));
 }
+
+
 
 // export const toggleTodo = id => ({
 //   type: 'TOGGLE_TODO',
