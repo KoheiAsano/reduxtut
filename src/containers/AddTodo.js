@@ -18,17 +18,9 @@ const AddTodo = ({ addTodo, uploadImg }) => {
           if(!input || !input.value.trim() ){
             return
           }
-          if(img){
-            let storageRef=firebaseStorage.ref().child(input.value);
-            storageRef.put(img).then(storageRef.getDownloadURL().then((url)=>{
-              addTodo(input.value, url)
-              input.value = ''
-            }))
-          }else{
-            addTodo(input.value, null)
-            input.value = ''
-            img = null
-          }
+          addTodo(input.value, img)
+          input.value = ''
+          img = null
         }}
       >
         <TextField label={'TODO'}
@@ -37,13 +29,6 @@ const AddTodo = ({ addTodo, uploadImg }) => {
            onChange={(e) => input = e.target}/>
         <input type="file" name="pic" onChange={(e) => img = e.target.files[0]
                   }></input>
-        <Button className={css(styles.hover)}
-          onClick={
-            (e) => console.log(img)
-          }
-        >
-          confirm img
-        </Button>
         <Button className={css(styles.hover)}
         type="submit"
         >

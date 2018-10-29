@@ -16,7 +16,6 @@ const TodoList = ({ todos, toggleTodo, deleteTodo }) => (
           onClick={() => toggleTodo(todo.key)}
           Edit={Edit}
         />
-        <Button onClick={() => Edit= !Edit}>Test</Button>
         <div key={id + 1}
           style={{marginLeft:10, fontSize:8, color:'red'}}
           onClick={() => deleteTodo(todo.key)}>

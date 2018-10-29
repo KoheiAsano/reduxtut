@@ -30,8 +30,6 @@ class Todo extends React.Component {
             <img alt={'NO IMG'} src={this.props.img} style={{width: 50,height:50,}}/>
           </div>
           <ListItemText primary={this.props.text} />
-          <Button onClick={console.log(this.state.Edit)}>Test</Button>
-          <Button onClick={() => this.setState({Edit: !this.state.Edit})}>Test</Button>
           <ListItemSecondaryAction >
             <Checkbox
               onChange={this.props.onClick}

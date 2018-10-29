@@ -27,16 +27,22 @@ export const loadTodos = () => dispatch => {
 
 
 export const addTodo = (text, img) => dispatch => {
-
-  Todoref.push({
-    text: text,
-    completed:false,
-    img: img,
-  })
-  .catch(error => dispatch({
-    type: 'ADD_TASK_ERROR',
-    message: error.message,
-  }))
+  if(img){
+    let storageRef=firebaseStorage.ref().child(text);
+    storageRef.put(img).on('state_changed', () => {
+      storageRef.getDownloadURL().then((url)=>{
+        Todoref.push({
+          text: text,
+          completed:false,
+          img: url,
+        })
+        .catch(error => dispatch({
+          type: 'ADD_TASK_ERROR',
+          message: error.message,
+        }))
+      })
+    })
+  }
 }
 
 export const setVisibilityFilter = filter => ({
